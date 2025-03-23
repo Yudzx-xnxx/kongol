@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghitam Waifu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ramaikan, Lalu <span>HITAMKAN</span>.</h1>
+        <p>Hitamkan semua waifu atau husbu temanmu dan basmi para karbit!</p>
+
+        <!-- **Input Gambar** -->
+        <div class="upload-box">
+            <input type="file" id="imageInput" accept="image/png, image/jpeg">
+            <label for="imageInput">
+                <i class="fa fa-upload"></i>
+                <p>Klik atau drag gambar ke sini</p>
+                <span>PNG, JPG, atau JPEG</span>
+            </label>
+        </div>
+
+        <!-- **Opsi Warna Kulit** -->
+        <label for="skinColor">Pilih Warna Kulit:</label>
+        <select id="skinColor">
+            <option value="tetap">Tetap</option>
+            <option value="hitam">Hitam</option>
+            <option value="coklat">Coklat</option>
+        </select>
+
+        <!-- **Tombol Proses** -->
+        <button id="processImage">Proses Gambar</button>
+
+        <!-- **Hasil Gambar** -->
+        <div id="result"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
