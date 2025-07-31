@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Professional Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-container {
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .login-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .input-field {
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .input-field:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+
+    .btn-login {
+      transition: all 0.3s ease;
+      background-color: #4f46e5;
+    }
+
+    .btn-login:hover {
+      background-color: #4338ca;
+      transform: translateY(-2px);
+    }
+
+    .btn-login:active {
+      transform: translateY(0);
+    }
+
+    .success-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      background: #fff;
+      z-index: 1000;
+    }
+
+    .hidden-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .hidden-content img {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio untuk sukses -->
+  <audio id="successSound" preload="auto">
+    <source src="https://files.catbox.moe/oxnb3k.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Login Form -->
+  <div class="flex items-center justify-center min-h-screen p-4">
+    <div class="login-container w-full max-w-md bg-white rounded-xl p-8">
+      <div class="flex justify-center mb-8">
+        <div class="w-24 h-24 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Welcome Back</h1>
+      <p class="text-center text-gray-500 mb-8">Please enter your credentials to access the portal</p>
+
+      <form id="loginForm" class="space-y-6">
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" class="w-full px-4 py-3 rounded-lg input-field focus:outline-none">
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" class="w-full px-4 py-3 rounded-lg input-field focus:outline-none">
+          <a href="#" class="text-sm text-indigo-600 hover:text-indigo-500 float-right mt-2">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="w-full py-3 px-4 text-white font-semibold rounded-lg btn-login focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          Sign In
+        </button>
+      </form>
+
+      <div class="mt-6 text-center text-sm text-gray-500">
+        Don't have an account? <a href="#" class="text-indigo-600 font-medium hover:text-indigo-500">Contact Admin</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Animation -->
+  <div id="successAnimation" class="success-animation">
+    <div class="hidden-content">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73010e96-9cd6-4a5d-aa56-62505337dab8.png" alt="Success Check" class="mb-8" />
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Access Granted</h1>
+      <p class="text-gray-500">Welcome to the secure portal</p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === 'Yudzx' && password === 'Admin') {
+        document.querySelector('.login-container').style.display = 'none';
+        const successAnimation = document.getElementById('successAnimation');
+        successAnimation.style.display = 'block';
+
+        const audio = document.getElementById('successSound');
+        audio.loop = true;
+        audio.volume = 0.5;
+
+        // Play audio immediately after form submit (user gesture)
+        audio.play().then(() => {
+          console.log("Audio playing...");
+        }).catch(err => {
+          console.error("Audio failed to play:", err);
+        });
+
+      } else {
+        alert('Invalid credentials. Please try again.');
+        document.getElementById('password').value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
